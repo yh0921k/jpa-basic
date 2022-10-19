@@ -15,17 +15,9 @@ public class JpaMain {
     EntityTransaction tx = em.getTransaction();
     tx.begin();
 
-    Member memberA = new Member();
-    memberA.setId(55L);
-
-    Member memberB = new Member();
-    memberB.setId(56L);
-
     try {
-      System.out.println("Before");
-      em.persist(memberA);
-      em.persist(memberB);
-      System.out.println("After");
+      Member member = em.find(Member.class, 55L);
+      member.setName("UpdateName");
 
       tx.commit();
     } catch (Exception e) {
