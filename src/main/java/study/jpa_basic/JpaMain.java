@@ -15,11 +15,18 @@ public class JpaMain {
     EntityTransaction tx = em.getTransaction();
     tx.begin();
 
-    try {
-      Member findMember1 = em.find(Member.class, 1001L);
-      Member findMember2 = em.find(Member.class, 1001L);
+    Member memberA = new Member();
+    memberA.setId(55L);
 
-      System.out.println(findMember1 == findMember2);
+    Member memberB = new Member();
+    memberB.setId(56L);
+
+    try {
+      System.out.println("Before");
+      em.persist(memberA);
+      em.persist(memberB);
+      System.out.println("After");
+
       tx.commit();
     } catch (Exception e) {
       tx.rollback();
