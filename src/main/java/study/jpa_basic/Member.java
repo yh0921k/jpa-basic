@@ -15,6 +15,8 @@ public class Member {
   @Column(name = "name")
   private String name;
 
+  private int age;
+
   public Member() {
   }
 
