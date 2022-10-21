@@ -1,5 +1,5 @@
-//package study.jpa_basic;
-//
-//public enum RoleType {
-//  USER, ADMIN
-//}
+package study.jpa_basic;
+
+public enum RoleType {
+  USER, ADMIN
+}
