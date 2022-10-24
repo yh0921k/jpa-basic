@@ -10,6 +10,7 @@
         <class>study.jpa_basic.Team</class>
         <class>study.jpa_basic.Locker</class>
         <class>study.jpa_basic.Product</class>
+        <class>study.jpa_basic.MemberProduct</class>
 
         <!-- 실전 예제 클래스 -->
 <!--        <class>study.jpa_shop.domain.Item</class>-->
