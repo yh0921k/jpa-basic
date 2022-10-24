@@ -6,24 +6,26 @@
 
     <persistence-unit name="hello">
         <!-- 이론 학습 클래스 -->
-        <class>study.jpa_basic.Member</class>
-        <class>study.jpa_basic.Team</class>
-        <class>study.jpa_basic.Locker</class>
-        <class>study.jpa_basic.Product</class>
-        <class>study.jpa_basic.MemberProduct</class>
+<!--        <class>study.jpa_basic.Member</class>-->
+<!--        <class>study.jpa_basic.Team</class>-->
+<!--        <class>study.jpa_basic.Locker</class>-->
+<!--        <class>study.jpa_basic.Product</class>-->
+<!--        <class>study.jpa_basic.MemberProduct</class>-->
 
         <!-- 실전 예제 클래스 -->
-<!--        <class>study.jpa_shop.domain.Item</class>-->
-<!--        <class>study.jpa_shop.domain.Member</class>-->
-<!--        <class>study.jpa_shop.domain.Order</class>-->
-<!--        <class>study.jpa_shop.domain.OrderItem</class>-->
+        <class>study.jpa_shop.domain.Item</class>
+        <class>study.jpa_shop.domain.Member</class>
+        <class>study.jpa_shop.domain.Order</class>
+        <class>study.jpa_shop.domain.OrderItem</class>
+        <class>study.jpa_shop.domain.Category</class>
+        <class>study.jpa_shop.domain.Delivery</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
-<!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/jpashop;MODE=MYSQL"/>-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/test;MODE=MYSQL"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/jpashop;MODE=MYSQL"/>
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/test;MODE=MYSQL"/>-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 
             <!-- 옵션 -->

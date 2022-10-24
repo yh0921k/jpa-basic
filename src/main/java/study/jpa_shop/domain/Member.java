@@ -11,7 +11,9 @@ public class Member {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "MEMBER_ID")
   private Long id;
+
   private String name;
+  private String city;
   private String street;
   private String zipCode;
 
@@ -32,6 +34,14 @@ public class Member {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getCity() {
+    return city;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
   }
 
   public String getStreet() {
