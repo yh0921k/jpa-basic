@@ -1,5 +1,6 @@
 package study.jpa_shop;
 
+import study.jpa_shop.domain.Book;
 import study.jpa_shop.domain.Order;
 import study.jpa_shop.domain.OrderItem;
 
@@ -18,8 +19,11 @@ public class JpaMain {
     tx.begin();
 
     try {
-      Order order = new Order();
-      order.addOrderItem(new OrderItem());
+      Book book = new Book();
+      book.setName("JPA");
+      book.setAuthor("Kim");
+
+      em.persist(book);
       tx.commit();
     } catch (Exception e) {
       tx.rollback();
