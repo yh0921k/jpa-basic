@@ -8,6 +8,7 @@
         <!-- 이론 학습 클래스 -->
         <class>study.jpa_basic.Member</class>
         <class>study.jpa_basic.Team</class>
+        <class>study.jpa_basic.Locker</class>
 
         <!-- 실전 예제 클래스 -->
 <!--        <class>study.jpa_shop.domain.Item</class>-->
