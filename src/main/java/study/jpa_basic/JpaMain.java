@@ -1,9 +1,9 @@
 package study.jpa_basic;
 
-import org.hibernate.Hibernate;
-
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 public class JpaMain {
   public static void main(String[] args) {
@@ -19,16 +19,18 @@ public class JpaMain {
       Child child1 = new Child();
       Child child2 = new Child();
 
-      parent.addChild(child1 );
+      parent.addChild(child1);
       parent.addChild(child2);
 
       em.persist(parent);
+      em.persist(child1);
+      em.persist(child2);
 
       em.flush();
       em.clear();
 
       Parent findParent = em.find(Parent.class, parent.getId());
-      findParent.getChildList().remove(0);
+      em.remove(findParent);
 
       tx.commit();
     } catch (Exception e) {
