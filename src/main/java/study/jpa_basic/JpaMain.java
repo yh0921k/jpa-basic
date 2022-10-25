@@ -1,5 +1,7 @@
 package study.jpa_basic;
 
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
 
 public class JpaMain {
@@ -22,8 +24,7 @@ public class JpaMain {
 
       Member refMember = em.getReference(Member.class, member1.getId());
       System.out.println("refMember.getClass() = " + refMember.getClass());
-      refMember.getUsername();
-      System.out.println("emf.getPersistenceUnitUtil().isLoaded(refMember) = " + emf.getPersistenceUnitUtil().isLoaded(refMember));
+      Hibernate.initialize(refMember); // 강제 초기화
 
       tx.commit();
     } catch (Exception e) {
