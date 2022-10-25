@@ -7,12 +7,10 @@ import java.util.List;
 @Entity
 public class Parent {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
   private String name;
 
-  @OneToMany(mappedBy = "parent", orphanRemoval = true)
+  @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Child> childList = new ArrayList<>();
 
   public void addChild(Child child) {
