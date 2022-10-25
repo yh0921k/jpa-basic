@@ -15,16 +15,24 @@ public class JpaMain {
 
     try {
 
+      Team team = new Team();
+      team.setName("TeamAAA");
+      em.persist(team);
+
       Member member1 = new Member();
       member1.setUsername("AAA");
+      member1.setTeam(team);
       em.persist(member1);
-      
+
       em.flush();
       em.clear();
 
-      Member refMember = em.getReference(Member.class, member1.getId());
-      System.out.println("refMember.getClass() = " + refMember.getClass());
-      Hibernate.initialize(refMember); // 강제 초기화
+      Member m = em.find(Member.class, member1.getId());
+      System.out.println("m.getTeam().getClass() = " + m.getTeam().getClass());
+
+      System.out.println("=======================================");
+      m.getTeam().getName();
+      System.out.println("=======================================");
 
       tx.commit();
     } catch (Exception e) {
