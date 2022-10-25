@@ -14,6 +14,8 @@
         <class>study.jpa_basic.Book</class>
         <class>study.jpa_basic.Movie</class>
         <class>study.jpa_basic.Album</class>
+        <class>study.jpa_basic.Parent</class>
+        <class>study.jpa_basic.Child</class>
 
         <!-- 실전 예제 클래스 -->
 <!--        <class>study.jpa_shop.domain.Item</class>-->
