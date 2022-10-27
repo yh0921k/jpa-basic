@@ -23,9 +23,11 @@ public class JpaMain {
       member1.setWorkPeriod(new Period());
       em.persist(member1);
 
+      Address copyAddress = new Address(homeAddress.getCity(), homeAddress.getStreet(), homeAddress.getZipcode());
+
       Member member2 = new Member();
       member2.setUsername("Hello");
-      member2.setHomeAddress(homeAddress);
+      member2.setHomeAddress(copyAddress);
       member2.setWorkPeriod(new Period());
       em.persist(member2);
 
