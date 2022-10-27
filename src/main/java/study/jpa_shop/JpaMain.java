@@ -1,8 +1,6 @@
 package study.jpa_shop;
 
 import study.jpa_shop.domain.Book;
-import study.jpa_shop.domain.Order;
-import study.jpa_shop.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
