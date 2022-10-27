@@ -27,6 +27,7 @@ public class Member {
   @Column(name = "FOOD_NAME")
   private Set<String> favoriteFood = new HashSet<>();
 
+//  @OrderColumn(name = "address_history_order")
   @ElementCollection
   @CollectionTable(name = "ADDRESS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
   private List<Address> addressHistory = new ArrayList<>();
