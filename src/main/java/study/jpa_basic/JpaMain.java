@@ -15,10 +15,18 @@ public class JpaMain {
     tx.begin();
 
     try {
-      Address address1 = new Address("city", "street", "zipcode");
-      Address address2 = new Address("city", "street", "zipcode");
+      Member member = new Member();
+      member.setUsername("member1");
+      member.setHomeAddress(new Address("city", "street", "zipcode"));
 
-      System.out.println(address1.equals(address2));
+      member.getFavoriteFood().add("치킨");
+      member.getFavoriteFood().add("족발");
+      member.getFavoriteFood().add("피자");
+
+      member.getAddressHistory().add(new Address("city2", "street2", "zipcode2"));
+      member.getAddressHistory().add(new Address("city3", "street3", "zipcode3"));
+
+      em.persist(member);
 
       tx.commit();
     } catch (Exception e) {

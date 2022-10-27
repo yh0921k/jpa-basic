@@ -62,4 +62,20 @@ public class Member {
   public void setHomeAddress(Address homeAddress) {
     this.homeAddress = homeAddress;
   }
+
+  public Set<String> getFavoriteFood() {
+    return favoriteFood;
+  }
+
+  public void setFavoriteFood(Set<String> favoriteFood) {
+    this.favoriteFood = favoriteFood;
+  }
+
+  public List<Address> getAddressHistory() {
+    return addressHistory;
+  }
+
+  public void setAddressHistory(List<Address> addressHistory) {
+    this.addressHistory = addressHistory;
+  }
 }
