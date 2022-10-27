@@ -14,11 +14,17 @@ public class Member {
   @Column(name = "USERNAME")
   private String username;
 
-  @Embedded
-  private Period workPeriod;
+  @Embedded private Period workPeriod;
+
+  @Embedded private Address homeAddress;
 
   @Embedded
-  private Address homeAddress;
+  @AttributeOverrides({
+    @AttributeOverride(name = "city", column = @Column(name = "work_city")),
+    @AttributeOverride(name = "street", column = @Column(name = "work_street")),
+    @AttributeOverride(name = "zipcode", column = @Column(name = "work_zipcde"))
+  })
+  private Address workAddress;
 
   public Long getId() {
     return id;
