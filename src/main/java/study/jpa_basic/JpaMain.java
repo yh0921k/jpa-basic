@@ -17,14 +17,14 @@ public class JpaMain {
     try {
       Member member = new Member();
       member.setUsername("member1");
-      member.setHomeAddress(new Address("city", "street", "zipcode"));
+//      member.setHomeAddress(new Address("city", "street", "zipcode"));
+//
+//      member.getFavoriteFood().add("치킨");
+//      member.getFavoriteFood().add("족발");
+//      member.getFavoriteFood().add("피자");
 
-      member.getFavoriteFood().add("치킨");
-      member.getFavoriteFood().add("족발");
-      member.getFavoriteFood().add("피자");
-
-      member.getAddressHistory().add(new Address("city2", "street2", "zipcode2"));
-      member.getAddressHistory().add(new Address("city3", "street3", "zipcode3"));
+      member.getAddressHistory().add(new AddressEntity("city2", "street2", "zipcode2"));
+      member.getAddressHistory().add(new AddressEntity("city3", "street3", "zipcode3"));
 
       em.persist(member);
 
@@ -35,12 +35,14 @@ public class JpaMain {
       Member findMember = em.find(Member.class, member.getId());
       System.out.println("===================================");
 
-      findMember.getFavoriteFood().remove("치킨");
-      findMember.getFavoriteFood().add("한식");
+//      findMember.getFavoriteFood().remove("치킨");
+//      findMember.getFavoriteFood().add("한식");
 
       // equals(), hashcode()의 중요성
-      findMember.getAddressHistory().remove(new Address("city2", "street2", "zipcode2"));
-      findMember.getAddressHistory().add(new Address("new city 1", "street2", "zipcode2"));
+      //      findMember.getAddressHistory().remove(new AddressEntity("city2", "street2",
+      // "zipcode2"));
+      //      findMember.getAddressHistory().add(new AddressEntity("new city 1", "street2",
+      // "zipcode2"));
 
       tx.commit();
     } catch (Exception e) {
