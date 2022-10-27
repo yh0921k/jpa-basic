@@ -15,16 +15,10 @@ public class JpaMain {
     tx.begin();
 
     try {
-      Address homeAddress = new Address("city", "street", "zipcode");
+      Address address1 = new Address("city", "street", "zipcode");
+      Address address2 = new Address("city", "street", "zipcode");
 
-      Member member1 = new Member();
-      member1.setUsername("Hello");
-      member1.setHomeAddress(homeAddress);
-      member1.setWorkPeriod(new Period());
-      em.persist(member1);
-
-      Address newAddress = new Address("NewCity", homeAddress.getStreet(), homeAddress.getZipcode());
-      member1.setHomeAddress(newAddress);
+      System.out.println(address1.equals(address2));
 
       tx.commit();
     } catch (Exception e) {
