@@ -1,4 +1,4 @@
-package study.jpa_basic;
+package study.jpa_basic.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

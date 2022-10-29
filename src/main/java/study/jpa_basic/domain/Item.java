@@ -1,17 +1,18 @@
-package study.jpa_basic;
+package study.jpa_basic.domain;
 
 import javax.persistence.*;
 
 @Entity
-public class Child {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Item {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   private Long id;
-  private String name;
 
-  @ManyToOne
-  @JoinColumn(name = "PARENT_ID")
-  private Parent parent;
+  private String name;
+  private int price;
+
   public Long getId() {
     return id;
   }
@@ -28,11 +29,12 @@ public class Child {
     this.name = name;
   }
 
-  public Parent getParent() {
-    return parent;
+  public int getPrice() {
+    return price;
   }
 
-  public void setParent(Parent parent) {
-    this.parent = parent;
+  public void setPrice(int price) {
+    this.price = price;
   }
 }
+

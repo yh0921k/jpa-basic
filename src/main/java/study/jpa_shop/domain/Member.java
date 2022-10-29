@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member extends BaseEntity{
+public class Member extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,8 +14,7 @@ public class Member extends BaseEntity{
 
   private String name;
 
-  @Embedded
-  private Address address;
+  @Embedded private Address address;
 
   @OneToMany(mappedBy = "member")
   private List<Order> orders = new ArrayList<>();
