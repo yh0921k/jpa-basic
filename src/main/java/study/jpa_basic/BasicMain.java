@@ -18,10 +18,19 @@ public class BasicMain {
     tx.begin();
 
     try {
+      Member member = new Member();
+      member.setUsername("kim yong hwi");
+
+      em.persist(member);
+
+      em.flush();
+      em.clear();
+
       List<Member> result =
           em.createQuery("select m from Member m where m.username like '%kim%'", Member.class)
               .getResultList();
 
+      System.out.println("result.get(0).getUsername() = " + result.get(0).getUsername());
       tx.commit();
     } catch (Exception e) {
       tx.rollback();
