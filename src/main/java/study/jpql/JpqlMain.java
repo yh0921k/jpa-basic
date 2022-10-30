@@ -2,8 +2,10 @@ package study.jpql;
 
 import study.jpql.domain.Member;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 public class JpqlMain {
   public static void main(String[] args) {
@@ -20,15 +22,11 @@ public class JpqlMain {
       member.setAge(10);
       em.persist(member);
 
-      TypedQuery<Member> query = em.createQuery("select m from Member m", Member.class);
-      List<Member> resultList = query.getResultList();
-      for (Member findMember : resultList) {
-        System.out.println("findMember.getUsername() = " + findMember.getUsername());
-      }
-
-      TypedQuery<Member> query2 = em.createQuery("select m from Member m where m.id = 1", Member.class);
-      Member result = query.getSingleResult();
-      System.out.println("result.getUsername() = " + result.getUsername());
+      Member findMember =
+          em.createQuery("select m from Member m where username = :username", Member.class)
+              .setParameter("username", "member1")
+              .getSingleResult();
+      System.out.println("findMember = " + findMember.getUsername());
 
       tx.commit();
     } catch (Exception e) {
