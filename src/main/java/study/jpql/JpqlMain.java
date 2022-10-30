@@ -1,7 +1,6 @@
 package study.jpql;
 
 import study.jpql.domain.Member;
-import study.jpql.domain.MemberDto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,42 +18,25 @@ public class JpqlMain {
     tx.begin();
 
     try {
-      Member member = new Member();
-      member.setUsername("member1");
-      member.setAge(10);
-      em.persist(member);
+      for(int i = 0; i < 100; i++) {
+        Member member = new Member();
+        member.setUsername("member" + i);
+        member.setAge(i);
+        em.persist(member);
+      }
 
       em.flush();
       em.clear();
 
-      // 여러 값 조회 1
-      List findMembers = em.createQuery("select m.username, m.age from Member m").getResultList();
-      Object o = findMembers.get(0);
-      Object[] result = (Object[]) o;
-      System.out.println("result[0] = " + result[0]);
-      System.out.println("result[1] = " + result[1]);
+      List<Member> resultList = em.createQuery("select m from Member m order by m.age desc", Member.class)
+          .setFirstResult(15)
+          .setMaxResults(10)
+          .getResultList();
 
-      em.flush();
-      em.clear();
-
-      // 여러 값 조회 2
-      List<Object[]> findMembers2 =
-          em.createQuery("select m.username, m.age from Member m", Object[].class).getResultList();
-      Object[] objects = findMembers2.get(0);
-      System.out.println("objects[0] = " + objects[0]);
-      System.out.println("objects[1] = " + objects[1]);
-
-      em.flush();
-      em.clear();
-
-      // 여러 값 조회 3
-      // 문자열로 쿼리를 만들기 때문에 패키지명을 적어야하며, 추후 QueryDSL을 사용하면 해결됨
-      List<MemberDto> findMembers3 =
-          em.createQuery("select new study.jpql.domain.MemberDto(m.username, m.age) from Member m")
-              .getResultList();
-      MemberDto memberDto = findMembers3.get(0);
-      System.out.println("memberDto.getUsername() = " + memberDto.getUsername());
-      System.out.println("memberDto.getAge() = " + memberDto.getAge());
+      System.out.println("resultList.size() = " + resultList.size());
+      for (Member findMember : resultList) {
+        System.out.println(findMember);
+      }
 
       tx.commit();
     } catch (Exception e) {
