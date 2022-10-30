@@ -6,17 +6,23 @@
 
     <persistence-unit name="hello">
         <!-- 이론 학습 클래스 -->
-        <class>study.jpa_basic.domain.Member</class>
-        <class>study.jpa_basic.domain.Team</class>
-        <class>study.jpa_basic.domain.Product</class>
-        <class>study.jpa_basic.domain.MemberProduct</class>
-        <class>study.jpa_basic.domain.Item</class>
-        <class>study.jpa_basic.domain.Book</class>
-        <class>study.jpa_basic.domain.Movie</class>
-        <class>study.jpa_basic.domain.Album</class>
-        <class>study.jpa_basic.domain.Parent</class>
-        <class>study.jpa_basic.domain.Child</class>
-        <class>study.jpa_basic.domain.AddressEntity</class>
+<!--        <class>study.jpa_basic.domain.Member</class>-->
+<!--        <class>study.jpa_basic.domain.Team</class>-->
+<!--        <class>study.jpa_basic.domain.Product</class>-->
+<!--        <class>study.jpa_basic.domain.MemberProduct</class>-->
+<!--        <class>study.jpa_basic.domain.Item</class>-->
+<!--        <class>study.jpa_basic.domain.Book</class>-->
+<!--        <class>study.jpa_basic.domain.Movie</class>-->
+<!--        <class>study.jpa_basic.domain.Album</class>-->
+<!--        <class>study.jpa_basic.domain.Parent</class>-->
+<!--        <class>study.jpa_basic.domain.Child</class>-->
+<!--        <class>study.jpa_basic.domain.AddressEntity</class>-->
+
+        <!-- JPQL 학습 클래스 -->
+        <class>study.jpql.domain.Team</class>
+        <class>study.jpql.domain.Member</class>
+        <class>study.jpql.domain.Order</class>
+        <class>study.jpql.domain.Product</class>
 
         <!-- 실전 예제 클래스 -->
 <!--        <class>study.jpa_shop.domain.Item</class>-->
@@ -33,8 +39,9 @@
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/test;MODE=MYSQL"/>-->
 <!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/jpashop;MODE=MYSQL"/>-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/test;MODE=MYSQL"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/project/h2/jpql;MODE=MYSQL"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 
             <!-- 옵션 -->
