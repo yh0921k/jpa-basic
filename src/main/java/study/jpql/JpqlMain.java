@@ -1,10 +1,12 @@
 package study.jpql;
 
-import study.jpql.domain.Address;
 import study.jpql.domain.Member;
-import study.jpql.domain.Team;
+import study.jpql.domain.MemberDto;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.List;
 
 public class JpqlMain {
@@ -25,21 +27,34 @@ public class JpqlMain {
       em.flush();
       em.clear();
 
-      List<Member> findMembers = em.createQuery("select m from Member m", Member.class).getResultList();
+      // 여러 값 조회 1
+      List findMembers = em.createQuery("select m.username, m.age from Member m").getResultList();
+      Object o = findMembers.get(0);
+      Object[] result = (Object[]) o;
+      System.out.println("result[0] = " + result[0]);
+      System.out.println("result[1] = " + result[1]);
 
-      // 조회된 결과가 영속성 컨텍스트에서 관리됨
-      Member findMember = findMembers.get(0);
-      findMember.setAge(20);
+      em.flush();
+      em.clear();
 
-      // 편해보이지만 실무에서 JOIN은 성능과 직결되므로, 명시적으로 표현해주는 것이 좋음
-      List<Team> result = em.createQuery("select m.team from Member m", Team.class).getResultList();
-      List<Team> better = em.createQuery("select t from Member m join m.team t", Team.class).getResultList();
+      // 여러 값 조회 2
+      List<Object[]> findMembers2 =
+          em.createQuery("select m.username, m.age from Member m", Object[].class).getResultList();
+      Object[] objects = findMembers2.get(0);
+      System.out.println("objects[0] = " + objects[0]);
+      System.out.println("objects[1] = " + objects[1]);
 
-      // 임베디드 타입 프로젝션
-      List<Address> embedded = em.createQuery("select o.address from Order o", Address.class).getResultList();
+      em.flush();
+      em.clear();
 
-      // 스칼라 타입
-      List scalar = em.createQuery("select distinct m.username, m.age from Member m").getResultList();
+      // 여러 값 조회 3
+      // 문자열로 쿼리를 만들기 때문에 패키지명을 적어야하며, 추후 QueryDSL을 사용하면 해결됨
+      List<MemberDto> findMembers3 =
+          em.createQuery("select new study.jpql.domain.MemberDto(m.username, m.age) from Member m")
+              .getResultList();
+      MemberDto memberDto = findMembers3.get(0);
+      System.out.println("memberDto.getUsername() = " + memberDto.getUsername());
+      System.out.println("memberDto.getAge() = " + memberDto.getAge());
 
       tx.commit();
     } catch (Exception e) {
