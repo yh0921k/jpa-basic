@@ -3,6 +3,7 @@ package study.jpql;
 import study.jpql.domain.Member;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class JpqlMain {
   public static void main(String[] args) {
@@ -19,9 +20,15 @@ public class JpqlMain {
       member.setAge(10);
       em.persist(member);
 
-      TypedQuery<Member> query1 = em.createQuery("select m from Member m", Member.class);
-      TypedQuery<String> query2 = em.createQuery("select m.username from Member m", String.class);
-      Query query3 = em.createQuery("select m.username, m.age from Member m");
+      TypedQuery<Member> query = em.createQuery("select m from Member m", Member.class);
+      List<Member> resultList = query.getResultList();
+      for (Member findMember : resultList) {
+        System.out.println("findMember.getUsername() = " + findMember.getUsername());
+      }
+
+      TypedQuery<Member> query2 = em.createQuery("select m from Member m where m.id = 1", Member.class);
+      Member result = query.getSingleResult();
+      System.out.println("result.getUsername() = " + result.getUsername());
 
       tx.commit();
     } catch (Exception e) {
