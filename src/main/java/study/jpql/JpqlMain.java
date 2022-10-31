@@ -35,7 +35,7 @@ public class JpqlMain {
       em.flush();
       em.clear();
 
-      String query = "select locate('de', 'abcdefg') from Member m";
+      String query = "select size(t.members) from Team t";
       List<Integer> resultList = em.createQuery(query, Integer.class).getResultList();
       for (Integer integer : resultList) {
         System.out.println("integer = " + integer);
