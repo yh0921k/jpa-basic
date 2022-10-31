@@ -1,9 +1,13 @@
 package study.jpql;
 
 import study.jpql.domain.Member;
+import study.jpql.domain.MemberType;
 import study.jpql.domain.Team;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.List;
 
 public class JpqlMain {
@@ -24,17 +28,22 @@ public class JpqlMain {
       member.setUsername("team");
       member.setAge(20);
       member.setTeam(team);
+      member.setType(MemberType.ADMIN);
+
       em.persist(member);
 
       em.flush();
       em.clear();
 
-      String query = "select m.id, (select avg(m1.age) from Member m1) as avgAge from Member m left join Team t on m.username = t.name";
-      Query subQuery = em.createQuery(query);
-      List resultList = subQuery.getResultList();
-      System.out.println("resultList.size() = " + resultList.size());
-      System.out.println("((Object[])resultList.get(0))[0] = " + ((Object[])resultList.get(0))[0]);
-      System.out.println("((Object[])resultList.get(0))[1] = " + ((Object[])resultList.get(0))[1]);
+      String query = "select m.username, 'Hello', TRUE from Member m where m.type = :type";
+      List<Object[]> result =
+          em.createQuery(query).setParameter("type", MemberType.USER).getResultList();
+
+      for (Object[] objects : result) {
+        System.out.println("objects[0] = " + objects[0]);
+        System.out.println("objects[1] = " + objects[1]);
+        System.out.println("objects[2] = " + objects[2]);
+      }
 
       tx.commit();
     } catch (Exception e) {
