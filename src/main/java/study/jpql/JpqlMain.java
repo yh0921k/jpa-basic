@@ -35,7 +35,7 @@ public class JpqlMain {
       em.flush();
       em.clear();
 
-      String query = "select 'a' || 'b' from Member m";
+      String query = "select substring(m.username, 2, 3) from Member m";
       List<String> resultList = em.createQuery(query, String.class).getResultList();
       for (String s : resultList) {
         System.out.println("s = " + s);
