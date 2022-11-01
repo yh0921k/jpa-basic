@@ -60,10 +60,14 @@ public class JpqlMain {
       em.persist(member4);
 
       em.flush();
-      em.clear();
 
       int resultCount = em.createQuery("update Member m set m.age = 10 where m.age = 20").executeUpdate();
-      System.out.println("resultCount = " + resultCount);
+
+      System.out.println("member1.getAge() = " + member1.getAge());
+
+      em.clear();
+      Member member = em.find(Member.class, member1.getId());
+      System.out.println("member.getAge() = " + member.getAge());
 
       tx.commit();
     } catch (Exception e) {
