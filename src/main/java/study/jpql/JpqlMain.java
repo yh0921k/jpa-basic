@@ -62,13 +62,8 @@ public class JpqlMain {
       em.flush();
       em.clear();
 
-      List<Member> findMembers =
-          em.createNamedQuery("Member.findByUsername", Member.class)
-              .setParameter("username", member2.getUsername())
-              .getResultList();
-      for (Member findMember : findMembers) {
-        System.out.println("findMember = " + findMember);
-      }
+      int resultCount = em.createQuery("update Member m set m.age = 10 where m.age = 20").executeUpdate();
+      System.out.println("resultCount = " + resultCount);
 
       tx.commit();
     } catch (Exception e) {
