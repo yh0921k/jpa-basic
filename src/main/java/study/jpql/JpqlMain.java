@@ -42,10 +42,10 @@ public class JpqlMain {
       em.flush();
       em.clear();
 
-      String query = "select t.members from Team t ";
+      String query = "select m.username from Team t join t.members m";
 //      Collection result = em.createQuery(query, Collection.class).getResultList();
-      List<Collection> result = em.createQuery(query, Collection.class).getResultList();
-      for (Object o : result) {
+      List<String> resultList = em.createQuery(query, String.class).getResultList();
+      for (Object o : resultList) {
         System.out.println("o = " + o);
       }
 
