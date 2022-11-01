@@ -63,14 +63,9 @@ public class JpqlMain {
       em.flush();
       em.clear();
 
-      String query = "select t from Team t";
-      List<Team> resultList = em.createQuery(query, Team.class).setFirstResult(0).setMaxResults(10).getResultList();
-      for (Team team : resultList) {
-        System.out.println("team = " + team.getName() + ", " + team.getMembers().size());
-        for(Member m : team.getMembers()) {
-          System.out.println("m = " + m);
-        }
-      }
+      String query = "select m from Member m where m = :member";
+      Member findMember = em.createQuery(query, Member.class).setParameter("member", member1).getSingleResult();
+      System.out.println("findMember = " + findMember);
 
       tx.commit();
     } catch (Exception e) {
