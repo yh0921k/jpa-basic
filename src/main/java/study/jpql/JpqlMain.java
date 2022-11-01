@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.Collection;
 import java.util.List;
 
 public class JpqlMain {
@@ -41,10 +42,11 @@ public class JpqlMain {
       em.flush();
       em.clear();
 
-      String query = "select m.team from Member m ";
-      List<Team> resultList = em.createQuery(query, Team.class).getResultList();
-      for (Team findTeam : resultList) {
-        System.out.println("findTeam = " + findTeam);
+      String query = "select t.members from Team t ";
+//      Collection result = em.createQuery(query, Collection.class).getResultList();
+      List<Collection> result = em.createQuery(query, Collection.class).getResultList();
+      for (Object o : result) {
+        System.out.println("o = " + o);
       }
 
       tx.commit();
