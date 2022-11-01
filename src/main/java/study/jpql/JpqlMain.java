@@ -24,21 +24,27 @@ public class JpqlMain {
       team.setName("team");
       em.persist(team);
 
-      Member member = new Member();
-      member.setUsername("관리자");
-      member.setAge(20);
-      member.setTeam(team);
-      member.setType(MemberType.ADMIN);
+      Member member1 = new Member();
+      member1.setUsername("관리자1");
+      member1.setAge(20);
+      member1.setTeam(team);
+      member1.setType(MemberType.ADMIN);
+      em.persist(member1);
 
-      em.persist(member);
+      Member member2 = new Member();
+      member2.setUsername("관리자2");
+      member2.setAge(20);
+      member2.setTeam(team);
+      member2.setType(MemberType.ADMIN);
+      em.persist(member2);
 
       em.flush();
       em.clear();
 
-      String query = "select function('group_concat', m.username) from Member m ";
-      List<String> resultList = em.createQuery(query, String.class).getResultList();
-      for (String s : resultList) {
-        System.out.println("s = " + s);
+      String query = "select m.team from Member m ";
+      List<Team> resultList = em.createQuery(query, Team.class).getResultList();
+      for (Team findTeam : resultList) {
+        System.out.println("findTeam = " + findTeam);
       }
 
       tx.commit();
